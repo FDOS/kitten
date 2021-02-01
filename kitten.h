@@ -29,7 +29,11 @@ extern "C" {
 
 /* Data types */
 
+#if defined(__GNUC__)
+typedef int __attribute__((used)) nl_catd;
+#else
 typedef int nl_catd;
+#endif
 
 /* Functions */
 
