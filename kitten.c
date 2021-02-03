@@ -24,10 +24,8 @@
 #include <string.h>			/* strchr */
 #include <fcntl.h>
 #include <dos.h>
-
-/* assert we are running in small model */
-/* else pointer below has to be done correctly */
-/* char verify_small_pointers[sizeof(void*) == 2 ? 1 : -1]; */
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #include "kitten.h"
 
@@ -66,6 +64,7 @@ char * getlp;       /* current point in buffer       */
 int getlrem = -1;   /* remaining bytes in buffer     */
 
 
+#if defined(__TURBOC__)
 /* DOS handle based file usage */
 
 int dos_open(char *filename, int mode)
@@ -117,6 +116,9 @@ void dos_close(int file)
 	r.x.bx = file;
 	intdos(&r,&r);
 }
+#else
+#include <unistd.h>
+#endif
 
 
 /* Functions */
@@ -279,7 +281,7 @@ int catread (char *catfile)
 
   /* Get the whole catfile into a buffer and parse it */
   
-  file = open (catfile, O_RDONLY | O_TEXT);
+  file = open (catfile, O_RDONLY);
   if (file < 0) 
       /* Cannot open the file.  Return failure */
       return 0;
