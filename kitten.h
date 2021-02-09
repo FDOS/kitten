@@ -36,11 +36,15 @@ typedef int nl_catd;
 #endif
 
 /* Functions */
-
+#ifdef NOCATS             /* #define NOCATS to disable completely */
+#define catgets(c,x,y,s) s
+#define catopen(x,y) 1
+#define catclose(x)
+#else
 #define catgets(catalog, set,message_number,message) kittengets(set,message_number,message)
 #define catopen(name,flag) kittenopen(name)
 #define catclose(catalog)  kittenclose()
-
+#endif
 
 char *  kittengets( int set_number, int message_number,char *message);
 nl_catd kittenopen(char *name);
