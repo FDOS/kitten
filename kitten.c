@@ -129,7 +129,7 @@ void dos_close(int file)
  * On failure, catgets() returns the value 'message'.
  */
 
-char * kittengets(int setnum, int msgnum, char * message)
+const char *kittengets(int setnum, int msgnum, const char *message)
 {
 
   int i = 0;
