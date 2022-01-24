@@ -52,6 +52,9 @@ void    kittenclose (void);
 
 int get_line (int file, char *buffer, int size);
 
+int kitten_extract_response(const char *s, const char *delimiters,
+                            char *responses, int num);
+
 #if defined(__TURBOC__)
 int dos_open(char *filename, int mode);
 #define open(filename,mode) dos_open(filename,mode)
