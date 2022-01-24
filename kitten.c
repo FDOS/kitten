@@ -578,3 +578,38 @@ int get_line (int file, char *orig_str, int size)
 
 }
 
+/*
+ * input
+ *   s          : input string to be parsed
+ *   delimiters : start, intermediate and end
+ *   responses  : output buffer (has to be long enough for num chars)
+ *   num        : required number of responses
+ *
+ * return
+ *   0 on failure
+ *   1 on success
+ */
+int kitten_extract_response(const char *s, const char *delimiters,
+                            char *responses, int num) {
+  int slen = strlen(s);
+  const char *p, *q;
+  int i;
+
+  /* Response parsing requires substring usually of the form '(%c/%c)' */
+  p = strchr(s, delimiters[0]);
+  if (!p)
+    return 0;
+
+  /* Each response requires letter followed by a delimiter e.g. 'Y/' or 'N)' */
+  if (p + 1 - s > slen - 2 * num)
+    return 0;
+
+  for (i = 0; i < num; i++) {
+    q = p + 2 + i * 2;
+    if (*q != delimiters[1] && *q != delimiters[2])
+      return 0;
+    responses[i] = *(p + 1 + i * 2);
+  }
+
+  return 1;
+}
