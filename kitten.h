@@ -46,7 +46,7 @@ typedef int nl_catd;
 #define catclose(catalog)  kittenclose()
 #endif
 
-char *  kittengets( int set_number, int message_number,char *message);
+const char *kittengets(int setnum, int msgnum, const char *message);
 nl_catd kittenopen(char *name);
 void    kittenclose (void);
 
