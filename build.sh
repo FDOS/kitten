@@ -15,11 +15,11 @@ elif [ x"${COMPILER}" = "xwatcom" ] ; then
   export CFLAGS="-bt=DOS -bcl=DOS -ms -lr -fe="
 
 elif [ x"${COMPILER}" = "xwatcom-emu" ] ; then
-  dosemu -td -K . -E "build.bat watcom"
+  dosemu -q -td -K . -E "build.bat watcom"
   exit $?
 
 elif [ x"${COMPILER}" = "xtcc-emu" ] ; then
-  dosemu -td -K . -E "build.bat tcc"
+  dosemu -q -td -K . -E "build.bat tcc"
   exit $?
 
 else
