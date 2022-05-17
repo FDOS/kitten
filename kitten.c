@@ -29,7 +29,7 @@
 
 #include "kitten.h"
 
-char catcontents[6144];	/* *** Maximum size of PROGRAM.%LANG% file *** */
+static char catcontents[6144];	/* *** Maximum size of PROGRAM.%LANG% file *** */
 
 struct catstring{
   char key1;
@@ -39,7 +39,7 @@ struct catstring{
 
 typedef struct catstring catstring_t;
 
-catstring_t catpoints[128];		/* max 128 strings can be defined... */
+static catstring_t catpoints[128];		/* max 128 strings can be defined... */
 
 
 /* Local prototypes */
@@ -57,11 +57,11 @@ int mystrtoul(char *, int, int);
 /* Globals */
 
 nl_catd _kitten_catalog = 0;	/* _kitten_catalog descriptor or 0 */
-char catfile[128];		/* full path to _kitten_catalog */
+static char catfile[128];		/* full path to _kitten_catalog */
 
-char getlbuf[1024]; /* read buffer (better speed) -- 7/2004: 1k, not 8k */
-char * getlp;       /* current point in buffer       */
-int getlrem = -1;   /* remaining bytes in buffer     */
+static char getlbuf[1024]; /* read buffer (better speed) -- 7/2004: 1k, not 8k */
+static char *getlp;        /* current point in buffer       */
+static int getlrem = -1;   /* remaining bytes in buffer     */
 
 
 #if defined(__TURBOC__)
