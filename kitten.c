@@ -56,7 +56,7 @@ int mystrtoul(char *, int, int);
 
 /* Globals */
 
-nl_catd _kitten_catalog = 0;	/* _kitten_catalog descriptor or 0 */
+static nl_catd _kitten_catalog = 0;	/* _kitten_catalog descriptor or 0 */
 static char catfile[128];		/* full path to _kitten_catalog */
 
 static char getlbuf[1024]; /* read buffer (better speed) -- 7/2004: 1k, not 8k */
