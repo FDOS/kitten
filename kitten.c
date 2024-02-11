@@ -24,8 +24,10 @@
 #include <string.h>			/* strchr */
 #include <fcntl.h>
 #include <dos.h>
+#if !defined(__TURBOC__)
 #include <sys/stat.h>
 #include <sys/types.h>
+#endif
 
 #include "kitten.h"
 
